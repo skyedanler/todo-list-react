@@ -14,9 +14,19 @@ function App() {
     };
 
     setTodos((prev) => {
-      return [...prev, newTodo];    
+      return [...prev, newTodo];
     });
   };
+
+  const handleDelete = (id) => {
+    setTodos(
+      todos.filter((todo) => {
+        !todo.id === id;
+      }),
+    );
+  };
+
+  const toggleCompletion = (id) => {};
 
   return (
     <>
@@ -26,11 +36,11 @@ function App() {
 
       <main>
         <section className="todo-input-section">
-          <TodoForm addTodo={addTodo}/>
+          <TodoForm addTodo={addTodo} />
         </section>
 
         <section className="todo-list-section">
-          <TodoList todos={todos}/>
+          <TodoList todos={todos} handleDelete={handleDelete} />
         </section>
       </main>
     </>

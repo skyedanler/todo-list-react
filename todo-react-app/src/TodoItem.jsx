@@ -1,7 +1,9 @@
 import "./TodoItem.css";
 
 export default function TodoItem(props) {
-
+  const deleteThisTodo = () => {
+    props.handleDelete(props.todo.id);
+  };
 
   return (
     <div className="todo-item">
@@ -15,7 +17,11 @@ export default function TodoItem(props) {
         {props.todo.text}
       </label>
       <div className="todo-actions">
-        <button className="delete-btn" aria-label='Delete ${props.todo.id}'>
+        <button
+          className="delete-btn"
+          aria-label="Delete ${props.todo.id}"
+          onClick={deleteThisTodo}
+        >
           Delete Item
         </button>
       </div>

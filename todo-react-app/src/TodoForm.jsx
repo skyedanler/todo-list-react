@@ -2,9 +2,19 @@ import { useState } from "react";
 
 export default function TodoForm(props) {
   const [todoItem, setTodoItem] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    if (!todoItem.trim()) {
+      setError("Please enter a TODO item.");
+      return;
+    }
+    if (todoItem.trim().length < 3) {
+      setError("TODO item needs to be at least 3 characters.");
+      return;
+    }
 
     props.addTodo(todoItem);
   };
@@ -29,7 +39,9 @@ export default function TodoForm(props) {
           Add Todo
         </button>
       </div>
-      <div id="error-message" className="error-message" role="alert"></div>
+      <div id="error-message" className="error-message" role="alert">
+        {error}
+      </div>
     </form>
   );
 }
